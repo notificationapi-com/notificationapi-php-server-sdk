@@ -1,0 +1,32 @@
+{
+    "name": "notificationapi/notificationapi-php-server-sdk",
+    "description": "NotificationAPI SDK for server-side (back-end) PHP applications",
+    "type": "library",
+    "require": {
+      "php": ">=5.3.0"
+    },
+    "license": "proprietary",
+    "authors": [
+      {
+        "name": "Sahand Seifi",
+        "email": "sahand@notificationapi.com"
+      },
+      {
+        "name": "Mohammad Asadi",
+        "email": "mohammad@notificationapi.com"
+      }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "NotificationAPI": "src/"
+        }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "NotificationAPI\\NotificationAPIProvider"
+        ]
+      }
+    }
+  }
