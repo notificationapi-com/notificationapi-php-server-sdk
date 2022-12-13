@@ -19,4 +19,4 @@ jobs:
 
       - name: finding vulnerabilities and weaknesses
         run: ./vendor/bin/phpcs --extensions=php,inc,lib,module,info --standard=./vendor/pheromone/phpcs-security-audit/example_base_ruleset.xml ./src/NotificationAPI/NotificationAPI.php
-        continue-on-warning: false      
+        continue-on-warning: true      
