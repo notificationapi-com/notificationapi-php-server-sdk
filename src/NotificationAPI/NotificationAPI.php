@@ -47,6 +47,22 @@ class NotificationAPI
         return $this->request('POST', 'user_preferences/' . $userId, $userPreferences);
     }
 
+    public function identifyUser($user)
+    {
+        $userId = $user['id'];
+        $userData = $user;
+        unset($userData['id']);
+
+        // Generate HMAC hash of the user ID
+        $hashedUserId = base64_encode(hash_hmac('sha256', $userId, $this->clientSecret, true));
+
+        // Construct custom authorization header
+        $customAuthHeader = 'Authorization: Basic ' . base64_encode($this->clientId . ":" . $userId . ":" . $hashedUserId);
+
+        // Make the request
+        return $this->request('POST', 'users/' . urlencode($userId), $userData, $customAuthHeader);
+    }
+
     public function request($method, $uri, $data, $customAuthHeader = null)
     {
         $curl = curl_init();
