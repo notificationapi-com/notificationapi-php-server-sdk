@@ -23,13 +23,6 @@
             "NotificationAPI": "src/"
         }
     },
-    "extra": {
-      "laravel": {
-        "providers": [
-          "NotificationAPI\\NotificationAPIProvider"
-        ]
-      }
-    },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "dev-master"
     },
