@@ -46,7 +46,7 @@ class NotificationAPI
     {
         $data = new \stdClass();
         $data->sendRequest = $params['sendRequest'];
-        return $this->request("PATCH", 'schedule/' . $params['trackingId'] , $sendRequest);
+        return $this->request("PATCH", 'schedule/' . $params['trackingId'], $data);
     }
 
     public function deleteSchedule($params)
