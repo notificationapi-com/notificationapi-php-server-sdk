@@ -75,6 +75,11 @@ class NotificationAPI
         return $this->request('POST', 'users/' . urlencode($userId), $userData, $customAuthHeader);
     }
 
+    public function queryLogs($queryLogsRequest)
+    {
+        return $this->request('POST', 'logs/query', $queryLogsRequest);
+    }
+    
     public function request($method, $uri, $data, $customAuthHeader = null)
     {
         $curl = curl_init();
