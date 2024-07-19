@@ -75,6 +75,41 @@ class NotificationAPI
         return $this->request('POST', 'users/' . urlencode($userId), $userData, $customAuthHeader);
     }
 
+    public function queryLogs($queryLogsRequest)
+    {
+        return $this->request('POST', 'logs/query', $queryLogsRequest);
+    }
+
+    public function deleteUserPreferences($userId, $notificationId, $subNotificationId = null)
+    {
+        // Generate HMAC hash of the user ID
+        $hashedUserId = base64_encode(hash_hmac('sha256', $userId, $this->clientSecret, true));
+
+        // Construct custom authorization header
+        $customAuthHeader = 'Authorization: Basic ' . base64_encode($this->clientId . ":" . $userId . ":" . $hashedUserId);
+
+        // Build query string
+        $queryStrings = ['notificationId' => $notificationId];
+        if ($subNotificationId) {
+            $queryStrings['subNotificationId'] = $subNotificationId;
+        }
+
+        // Make the request
+        return $this->request('DELETE', 'users/' . urlencode($userId) . '/preferences', null, $customAuthHeader, $queryStrings);
+    }
+
+    public function updateInAppNotification($userId, $params)
+    {
+        // Generate HMAC hash of the user ID
+        $hashedUserId = base64_encode(hash_hmac('sha256', $userId, $this->clientSecret, true));
+
+        // Construct custom authorization header
+        $customAuthHeader = 'Authorization: Basic ' . base64_encode($this->clientId . ":" . $userId . ":" . $hashedUserId);
+
+        // Make the request
+        return $this->request('PATCH', 'users/' . urlencode($userId) . '/notifications/INAPP_WEB', $params, $customAuthHeader);
+    }
+
     public function request($method, $uri, $data, $customAuthHeader = null)
     {
         $curl = curl_init();
@@ -87,8 +122,8 @@ class NotificationAPI
 
         // Use customAuthHeader if provided, otherwise use basic auth
         $authorizationHeader = $customAuthHeader ?
-                               $customAuthHeader :
-                               'Authorization: Basic ' . base64_encode($this->clientId . ":" . $this->clientSecret);
+            $customAuthHeader :
+            'Authorization: Basic ' . base64_encode($this->clientId . ":" . $this->clientSecret);
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, [
             $authorizationHeader
