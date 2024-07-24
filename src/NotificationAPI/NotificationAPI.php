@@ -110,6 +110,7 @@ class NotificationAPI
         return $this->request('PATCH', 'users/' . urlencode($userId) . '/notifications/INAPP_WEB', $params, $customAuthHeader);
     }
 
+
     public function request($method, $uri, $data, $customAuthHeader = null)
     {
         $curl = curl_init();
