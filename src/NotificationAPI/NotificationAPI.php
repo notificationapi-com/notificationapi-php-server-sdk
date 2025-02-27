@@ -4,9 +4,15 @@ namespace NotificationAPI;
 
 class NotificationAPI
 {
+    public const US_REGION = 'https://api.notificationapi.com';
+    public const EU_REGION = 'https://api.eu.notificationapi.com';
+    public const CA_REGION = 'https://api.ca.notificationapi.com';
+    
     public $clientId;
     public $clientSecret;
-    function __construct($clientId, $clientSecret)
+    public $baseURL;
+
+    function __construct($clientId, $clientSecret, $baseURL = null)
     {
         if (!$clientId) {
             throw 'Bad clientId';
@@ -14,6 +20,12 @@ class NotificationAPI
 
         if (!$clientSecret) {
             throw 'Bad clientSecret';
+        }
+
+        if ($baseURL) {
+            $this->baseURL = $baseURL;
+        } else {
+            $this->baseURL = self::US_REGION;
         }
 
         $this->clientId = $clientId;
@@ -111,10 +123,14 @@ class NotificationAPI
     }
 
 
-    public function request($method, $uri, $data, $customAuthHeader = null)
+    public function request($method, $uri, $data, $customAuthHeader = null, $queryStrings = null)
     {
         $curl = curl_init();
-        $url = "https://api.notificationapi.com/" . $this->clientId . "/" . $uri;
+        $url = $this->baseURL . "/" . $this->clientId . "/" . $uri;
+
+        if ($queryStrings) {
+            $url .= '?' . http_build_query($queryStrings);
+        }
 
         if ($data) {
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
