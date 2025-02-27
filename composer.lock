@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6bf117317510851d50dd943356c230fa",
+    "content-hash": "ce3f8dead6b69b5020375cbfaef175a3",
     "packages": [
         {
             "name": "pheromone/phpcs-security-audit",
@@ -52,12 +52,12 @@
             "version": "4.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
                 "reference": "89d5f8e35d08422d5b1790e44f3ef2956a71e701"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/89d5f8e35d08422d5b1790e44f3ef2956a71e701",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/89d5f8e35d08422d5b1790e44f3ef2956a71e701",
                 "reference": "89d5f8e35d08422d5b1790e44f3ef2956a71e701",
                 "shasum": ""
             },
@@ -196,6 +196,6 @@
     "platform": {
         "php": ">=5.3.0"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
