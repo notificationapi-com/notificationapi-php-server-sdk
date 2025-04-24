@@ -13,11 +13,17 @@ Please refer to our hosted [documentations](https://docs.notificationapi.com)
 Install dependencies:
 
 ```
+
 ```
 
 Run tests:
 
 ```
+
 ```
 
 100% code coverage required.
+
+# Package Management
+
+This package is automatically published to Packagist based on git tags. When a new tag is pushed to the repository, Packagist automatically detects the change and updates the package. As a result, this repository does not include a publish step in its GitHub Actions workflow.
